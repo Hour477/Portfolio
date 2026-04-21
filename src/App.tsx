@@ -1,3 +1,4 @@
+import {SpeedInsights} from '@vercel/speed-insights/react';
 import SmoothScroll from './components/SmoothScroll';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -20,6 +21,7 @@ export default function App() {
           <Timeline />
           <Contact />
         </main>
+        <SpeedInsights />
       </div>
     </SmoothScroll>
   );
