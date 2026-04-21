@@ -1,7 +1,10 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -10,21 +13,46 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
-        x: -50,
-        clipPath: 'inset(0 100% 0 0)',
+      // Entry Animation
+      gsap.from('.title-word', {
+        y: 60,
+        rotateX: -45,
         opacity: 0,
-        duration: 2,
-        ease: 'expo.inOut',
+        duration: 1.2,
+        stagger: 0.15,
+        ease: 'power4.out',
         delay: 0.2,
       });
 
-      gsap.from(subtitleRef.current, {
-        y: 40,
+      // Scroll Animation (Parallax)
+      gsap.to('.hero-content', {
+        y: 100,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        delay: 0.8,
+        scale: 0.95,
+        scrollTrigger: {
+          trigger: container.current,
+          start: 'top top',
+          end: 'bottom 40%',
+          scrub: true,
+        }
+      });
+
+      // Parallax for background orbs
+      gsap.to('.hero-orb-1', {
+        y: 200,
+        x: 100,
+        scrollTrigger: {
+          trigger: container.current,
+          scrub: 1,
+        }
+      });
+      gsap.to('.hero-orb-2', {
+        y: -150,
+        x: -50,
+        scrollTrigger: {
+          trigger: container.current,
+          scrub: 1,
+        }
       });
     }, container);
 
@@ -38,11 +66,11 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden pt-20"
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-accent/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="hero-orb-1 absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-accent/20 rounded-full blur-[120px]" />
+        <div className="hero-orb-2 absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-500/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <div className="hero-content relative z-10 text-center max-w-4xl mx-auto">
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -54,9 +82,28 @@ export default function Hero() {
 
         <h1
           ref={titleRef}
-          className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight mb-8 text-gradient leading-[0.9]"
+          className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-8 leading-[1.1]"
         >
-          Chann Lyhour
+          <div className="block">
+            {["I'm", "Lyhour"].map((word, i) => (
+              <span 
+                key={i} 
+                className={`title-word inline-block mr-[0.3em] ${word === "I'm" ? "text-[#00d2ff] font-extrabold drop-shadow-[0_0_15px_rgba(0,210,255,0.4)]" : "text-gradient"}`}
+              >
+                {word}
+              </span>
+            ))}
+          </div>
+          <div className="block">
+            {["Web", "Developer"].map((word, i) => (
+              <span 
+                key={i} 
+                className="title-word inline-block mr-[0.3em] text-gradient"
+              >
+                {word}
+              </span>
+            ))}
+          </div>
         </h1>
 
         <p
