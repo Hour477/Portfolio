@@ -1,13 +1,14 @@
-import { Send, Instagram, Linkedin, Github, Facebook } from 'lucide-react';
+import { Send } from 'lucide-react';
+import { SiFacebook, SiGithub } from 'react-icons/si';
 
 export default function Contact() {
   return (
     <section id="contact" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden glass border border-white/5 relative">
+      <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden glass border border-primary/5 relative">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 blur-[150px] -z-10" />
         
         <div className="grid lg:grid-cols-2">
-          <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-white/5">
+          <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-primary/5">
             <span className="text-accent font-mono text-sm uppercase tracking-widest block mb-4">
               Get in Touch
             </span>
@@ -24,18 +25,28 @@ export default function Contact() {
                 <a href="mailto:chann@lyhour.me" className="block text-2xl font-medium hover:text-accent transition-colors">
                   chann@lyhour.me
                 </a>
-                <a href="tel:+1234567890" className="block text-xl text-secondary hover:text-white transition-colors">
+                <a href="tel:+1234567890" className="block text-xl text-secondary hover:text-primary transition-colors">
                   +855-68642521 (KH)
                 </a>
               </div>
             </div>
 
             <div className="flex gap-6">
-              <a href="https://www.facebook.com/bro.hour.1422409" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 hover:border-accent hover:text-accent transition-all">
-                <Facebook size={20} />
+              <a 
+                href="https://www.facebook.com/bro.hour.1422409" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-[#1877F2] text-white hover:scale-110 hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] transition-all duration-300"
+              >
+                <SiFacebook size={22} />
               </a>
-              <a href="https://github.com/Hour477" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 hover:border-accent hover:text-accent transition-all">
-                <Github size={20} />
+              <a 
+                href="https://github.com/Hour477" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black hover:scale-110 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300"
+              >
+                <SiGithub size={22} />
               </a>
             </div>
           </div>
@@ -46,23 +57,23 @@ export default function Contact() {
                 <label className="text-xs font-mono uppercase tracking-widest text-secondary">Full Name</label>
                 <input 
                   type="text" 
-                  className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-all"
-                  placeholder="John Doe"
+                  className="w-full bg-transparent border-b border-primary/10 py-4 focus:border-accent outline-none transition-all"
+                  placeholder="yourname"
                 />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-mono uppercase tracking-widest text-secondary">Email Address</label>
                 <input 
                   type="email" 
-                  className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-all"
-                  placeholder="john@example.com"
+                  className="w-full bg-transparent border-b border-primary/10 py-4 focus:border-accent outline-none transition-all"
+                  placeholder="youremail@example.com"
                 />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-mono uppercase tracking-widest text-secondary">Project Details</label>
                 <textarea 
                   rows={4}
-                  className="w-full bg-transparent border border-white/10 rounded-xl p-4 focus:border-accent outline-none transition-all resize-none mt-4"
+                  className="w-full bg-transparent border border-primary/10 rounded-xl p-4 focus:border-accent outline-none transition-all resize-none mt-4"
                   placeholder="Tell me about your amazing project..."
                 />
               </div>
@@ -80,12 +91,12 @@ export default function Contact() {
         </div>
       </div>
       
-      <div className="mt-32 border-t border-white/5 pt-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto opacity-50 text-xs font-mono lowercase tracking-widest">
+      <div className="mt-32 border-t border-primary/5 pt-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto opacity-50 text-xs font-mono lowercase tracking-widest">
         <p>© 2025 CHANN LYHOUR.</p>
         <div className="flex gap-8">
-          <a href="#" className="hover:text-primary transition-colors">Privacy</a>
-          <a href="#" className="hover:text-primary transition-colors">Cookies</a>
-          <a href="#" className="hover:text-primary transition-colors">License</a>
+          <a href="javascript:void(0)" className="hover:text-primary transition-colors">Privacy</a>
+          <a href="javascript:void(0)" className="hover:text-primary transition-colors">Cookies</a>
+          <a href="javascript:void(0)" className="hover:text-primary transition-colors">License</a>
         </div>
         <p>Built with passion and precision.</p>
       </div>

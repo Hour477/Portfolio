@@ -84,7 +84,7 @@ export default function Timeline() {
 
         <div className="relative">
           {/* Central Line */}
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-white/10" />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-primary/10" />
           <div 
             ref={lineRef}
             className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-accent origin-top scale-y-0" 
@@ -102,7 +102,7 @@ export default function Timeline() {
                   <span className="text-accent font-mono text-sm mb-2 block">{exp.year}</span>
                   <h3 className="text-2xl md:text-3xl font-display font-medium mb-1">{exp.role}</h3>
                   <h4 className="text-lg text-secondary mb-4">{exp.company}</h4>
-                  <p className="text-secondary leading-relaxed">{exp.desc}</p>
+                  <p className="text-secondary text-lg leading-relaxed">{exp.desc}</p>
                 </div>
                 
                 <div className="relative z-10 w-4 h-4 rounded-full bg-bg border-4 border-accent" />

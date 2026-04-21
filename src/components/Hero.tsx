@@ -11,13 +11,11 @@ export default function Hero() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(titleRef.current, {
-        y: 60,
+        x: -50,
+        clipPath: 'inset(0 100% 0 0)',
         opacity: 0,
-        scale: 0.95,
-        filter: 'blur(10px)',
-        letterSpacing: '0.1em',
-        duration: 1.5,
-        ease: 'expo.out',
+        duration: 2,
+        ease: 'expo.inOut',
         delay: 0.2,
       });
 
@@ -79,10 +77,21 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 border border-white/20 hover:border-white/40 rounded-full transition-all duration-300"
+            className="px-8 py-4 border border-primary/20 hover:border-primary/40 rounded-full transition-all duration-300"
           >
             Let's Talk
           </a>
+        </div>
+      </div>
+
+      {/* Marquee Section */}
+      <div className="absolute bottom-10 left-0 w-full overflow-hidden opacity-20 hover:opacity-50 transition-opacity duration-500 pointer-events-none">
+        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite]">
+          {[...Array(10)].map((_, i) => (
+            <span key={i} className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter mx-4">
+              Chann Lyhour <span className="text-accent">·</span> Product Designer <span className="text-accent">·</span> Full Stack Engineer <span className="text-accent">·</span>
+            </span>
+          ))}
         </div>
       </div>
     </section>

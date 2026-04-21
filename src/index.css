@@ -12,19 +12,33 @@
   --color-bg: var(--bg);
 
   --animate-float: float 6s ease-in-out infinite;
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 @layer base {
   :root {
     --bg: #09090b;
     --primary: #ffffff;
+    --primary-rgb: 255, 255, 255;
     --secondary: #a1a1aa;
+    --nextjs-color: #ffffff;
   }
 
   .light {
     --bg: #f8fafc;
     --primary: #0f172a;
+    --primary-rgb: 15, 23, 42;
     --secondary: #64748b;
+    --nextjs-color: #000000;
   }
 
   body {
@@ -35,7 +49,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-r from-white via-white/80 to-white/40;
+    @apply bg-clip-text text-transparent bg-linear-to-r from-primary via-primary/80 to-primary/40;
   }
   
   .glass {
