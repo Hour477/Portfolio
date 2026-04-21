@@ -122,16 +122,20 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ margin: "-100px" }}
             transition={{ duration: 1, ease: "backOut" }}
-            className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-4 glass ring-1 ring-primary/10"
+            className="relative w-72 h-72 md:w-[420px] md:h-[420px] rounded-full flex items-center justify-center"
           >
-            {/* Big 5px Ring Border */}
-            <div className="absolute -inset-2 rounded-full border-[5px] border-accent/20 animate-pulse" />
+            {/* Outer Rotating Ring */}
+            <div className="absolute inset-0 rounded-full border border-accent/20 animate-[spin_20s_linear_infinite]" />
+            <div className="absolute inset-4 rounded-full border border-dashed border-accent/10 animate-[spin_30s_linear_infinite_reverse]" />
             
-            {/* Animated Ring Border */}
-            <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/30 animate-[spin_20s_linear_infinite]" />
-            <div className="absolute inset-2 rounded-full border border-accent/20 animate-[spin_15s_linear_infinite_reverse]" />
-            
-            <div className="w-full h-full rounded-full overflow-hidden relative z-10 border-[5px] border-primary/10 shadow-2xl">
+            {/* Glow Core */}
+            <div className="absolute inset-8 rounded-full bg-accent/5 blur-3xl" />
+
+            {/* Main Image Container */}
+            <div className="w-[85%] h-[85%] rounded-full overflow-hidden relative z-10 border-[12px] border-bg shadow-[0_0_50px_rgba(var(--primary-rgb),0.1)] group-hover:shadow-[0_0_60px_rgba(var(--accent-rgb),0.2)] transition-all duration-700">
+               {/* Inner Accent Ring */}
+               <div className="absolute inset-0 rounded-full border-2 border-accent/20 z-20 pointer-events-none" />
+              
               <img
                 src={myPic}
                 alt="Chann Lyhour Professional Portrait"
@@ -140,9 +144,9 @@ export default function About() {
               />
             </div>
 
-            {/* Glowing Orbs */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl animate-pulse" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-500/20 rounded-full blur-2xl animate-pulse delay-700" />
+            {/* Float Elements */}
+            <div className="absolute top-10 right-10 w-4 h-4 bg-accent rounded-full animate-bounce shadow-[0_0_15px_var(--color-accent)]" />
+            <div className="absolute bottom-20 left-4 w-2 h-2 bg-accent/40 rounded-full animate-pulse" />
           </motion.div>
           
           {/* Decorative Rings */}

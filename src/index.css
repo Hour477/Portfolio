@@ -29,6 +29,7 @@
     --bg: #09090b;
     --primary: #ffffff;
     --primary-rgb: 255, 255, 255;
+    --accent-rgb: 59, 130, 246;
     --secondary: #a1a1aa;
     --nextjs-color: #ffffff;
   }
@@ -37,6 +38,7 @@
     --bg: #f8fafc;
     --primary: #0f172a;
     --primary-rgb: 15, 23, 42;
+    --accent-rgb: 59, 130, 246;
     --secondary: #64748b;
     --nextjs-color: #000000;
   }

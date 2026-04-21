@@ -74,28 +74,39 @@ export default function Projects() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray('.project-item');
-      
-      items.forEach((item: any, i) => {
-        gsap.fromTo(item, 
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 85%',
-              end: 'top 60%',
-              scrub: 1,
-            }
-          }
-        );
+      // Animate section title
+      gsap.from('.projects-header', {
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: 'top 80%',
+        }
+      });
 
-        // Parallax effect on image
-        gsap.to(item.querySelector('img'), {
-          yPercent: 15,
+      // Animate projects entrance with 3D effect
+      const projects = gsap.utils.toArray('.project-item');
+      projects.forEach((item: any, idx) => {
+        gsap.from(item, {
+          y: 150,
+          rotationX: 15,
+          opacity: 0,
+          duration: 1.5,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%',
+            end: 'top 60%',
+            scrub: 1,
+          }
+        });
+
+        // Parallax effect for the image inside the card
+        const img = item.querySelector('.project-img');
+        gsap.to(img, {
+          y: -50,
           ease: 'none',
           scrollTrigger: {
             trigger: item,
@@ -113,7 +124,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-32 px-6 bg-primary/[0.02]" ref={triggerRef}>
       <div className="max-w-7xl mx-auto">
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="projects-header mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <span className="text-secondary font-mono text-sm uppercase tracking-widest block mb-4">
               Featured Work
@@ -139,7 +150,7 @@ export default function Projects() {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                  className="project-img w-full h-[120%] object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-bg/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
