@@ -1,62 +1,8 @@
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { useRef } from 'react';
+import { Calendar, Briefcase, Sparkles, Code2, Globe } from 'lucide-react';
 import myPic from '../assets/mypic.jpg';
 
-function TypingText({ text }: { text: string }) {
-  const words = text.split(" ");
-  let charCount = 0;
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 5, filter: "blur(2px)" },
-    visible: (i: number) => ({
-      opacity: 1, 
-      y: 0,
-      filter: "blur(0px)",
-      transition: { 
-        duration: 0.4, 
-        ease: "easeOut",
-        delay: i * 0.03 
-      }
-    }),
-  };
-
-  return (
-    <motion.span
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className="inline flex flex-wrap"
-    >
-      {words.map((word, wordIndex) => {
-        const wordChars = word.split("");
-        const element = (
-          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
-            {wordChars.map((char, charIndex) => {
-              const globalIndex = charCount;
-              charCount++;
-              return (
-                <motion.span 
-                  key={charIndex} 
-                  custom={globalIndex}
-                  variants={childVariants}
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              );
-            })}
-          </span>
-        );
-        return element;
-      })}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        className="inline-block w-[3px] h-[0.9em] bg-accent ml-1 align-middle shadow-[0_0_8px_var(--color-accent)]"
-      />
-    </motion.span>
-  );
-}
 
 export default function About() {
   const containerRef = useRef<HTMLElement>(null);
@@ -82,35 +28,56 @@ export default function About() {
             viewport={{ margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="text-accent font-mono text-sm uppercase tracking-widest block mb-4">
-              Our Vision
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              <TypingText text="I am Chann Lyhour, turning complex ideas into seamless digital solutions." />
+            <div className="flex items-center gap-3 mb-4">
+              <Sparkles className="text-accent w-5 h-5 animate-pulse" />
+              <span className="text-accent font-mono text-sm uppercase tracking-[0.3em] block">
+                The Architect
+              </span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-display font-medium tracking-tight mb-8 leading-tight">
+              Turning complex logic into elegant digital experiences.
             </h2>
-            <div className="space-y-6 text-secondary text-lg leading-relaxed">
+            
+            <div className="space-y-6 text-secondary text-lg leading-relaxed max-w-xl">
               <p>
-                As a specialized software architect, I have a deep passion for 
-                creating systems that solve real-world problems. Whether it's 
-                automating a restaurant's workflow or building a high-traffic 
-                e-commerce platform, my focus is always on performance and user experience.
+                As a specialized <span className="text-primary font-medium">Software Architect</span>, I possess a deep passion for 
+                engineering systems that transcend simple code. My focus is on creating 
+                resilient architectures that prioritize <span className="text-accent">performance</span> and <span className="text-accent">scalability</span>.
               </p>
               <p>
-                My work spans multiple industries, providing tailored solutions for 
-                Hotel management, Food ordering, and robust E-commerce systems. 
-                I believe in code that is as elegant as the interface it powers.
+                From sophisticated <span className="text-primary">E-commerce ecosystems</span> to streamlined 
+                <span className="text-primary">POS systems</span>, my work is defined by the intersection 
+                of technical excellence and intuitive design.
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-8 pt-10 border-t border-white/5">
-              <div>
-                <h4 className="text-3xl font-display font-bold text-accent mb-1">2+</h4>
-                <p className="text-sm text-secondary uppercase tracking-tight">Years Experience</p>
-              </div>
-              <div>
-                <h4 className="text-3xl font-display font-bold text-primary mb-1">5+</h4>
-                <p className="text-sm text-secondary uppercase tracking-tight">Projects Completed</p>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-12">
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="glass p-6 rounded-2xl border-l-4 border-accent"
+              >
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="p-2 rounded-lg bg-accent/10">
+                    <Calendar className="text-accent w-5 h-5" />
+                  </div>
+                  <h4 className="text-3xl font-display font-bold text-primary">2+</h4>
+                </div>
+                <p className="text-xs text-secondary uppercase tracking-widest font-mono">Years in Industry</p>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="glass p-6 rounded-2xl border-l-4 border-white/20"
+              >
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="p-2 rounded-lg bg-white/5">
+                    <Briefcase className="text-primary w-5 h-5" />
+                  </div>
+                  <h4 className="text-3xl font-display font-bold text-primary">5+</h4>
+                </div>
+                <p className="text-xs text-secondary uppercase tracking-widest font-mono">Large Scale Projects</p>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -121,37 +88,57 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ margin: "-100px" }}
-            transition={{ duration: 1, ease: "backOut" }}
-            className="relative w-72 h-72 md:w-[420px] md:h-[420px] rounded-full flex items-center justify-center"
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-72 h-72 md:w-[480px] md:h-[480px] flex items-center justify-center"
           >
-            {/* Outer Rotating Ring */}
-            <div className="absolute inset-0 rounded-full border border-accent/20 animate-[spin_20s_linear_infinite]" />
-            <div className="absolute inset-4 rounded-full border border-dashed border-accent/10 animate-[spin_30s_linear_infinite_reverse]" />
+            {/* Architectural Rings */}
+            <div className="absolute inset-0 rounded-full border border-accent/10 animate-[spin_40s_linear_infinite]" />
+            <div className="absolute inset-8 rounded-full border border-dashed border-accent/20 animate-[spin_60s_linear_infinite_reverse]" />
+            <div className="absolute inset-16 rounded-full border-2 border-white/5" />
             
-            {/* Glow Core */}
-            <div className="absolute inset-8 rounded-full bg-accent/5 blur-3xl" />
+            {/* Dynamic Glows */}
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/20 rounded-full blur-[100px] opacity-50 group-hover:opacity-80 transition-opacity duration-1000" />
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px] opacity-30 group-hover:opacity-60 transition-opacity duration-1000" />
 
-            {/* Main Image Container */}
-            <div className="w-[85%] h-[85%] rounded-full overflow-hidden relative z-10 border-[12px] border-bg shadow-[0_0_50px_rgba(var(--primary-rgb),0.1)] group-hover:shadow-[0_0_60px_rgba(var(--accent-rgb),0.2)] transition-all duration-700">
-               {/* Inner Accent Ring */}
-               <div className="absolute inset-0 rounded-full border-2 border-accent/20 z-20 pointer-events-none" />
+            {/* Main Image Container with Octagonal Clip or stylized frame */}
+            <div className="w-[75%] h-[75%] relative z-10 p-4">
+              <div className="absolute inset-0 bg-accent/5 rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-white/5 rounded-[40px] -rotate-3 group-hover:-rotate-6 transition-transform duration-700" />
               
-              <img
-                src={myPic}
-                alt="Chann Lyhour Professional Portrait"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
+              <div className="relative h-full w-full rounded-[35px] overflow-hidden border border-white/10 shadow-2xl">
+                <img
+                  src={myPic}
+                  alt="Chann Lyhour Professional Portrait"
+                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-bg/80 via-transparent to-transparent opacity-60" />
+              </div>
             </div>
 
-            {/* Float Elements */}
-            <div className="absolute top-10 right-10 w-4 h-4 bg-accent rounded-full animate-bounce shadow-[0_0_15px_var(--color-accent)]" />
-            <div className="absolute bottom-20 left-4 w-2 h-2 bg-accent/40 rounded-full animate-pulse" />
+            {/* Floating Tech Badges */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-10 right-0 glass p-3 rounded-xl border border-accent/30 z-20"
+            >
+              <Code2 className="text-accent w-6 h-6" />
+            </motion.div>
+            
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-20 left-0 glass p-3 rounded-xl border border-white/20 z-20"
+            >
+              <Globe className="text-primary w-6 h-6" />
+            </motion.div>
+
+            {/* Decorative Dots */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full shadow-[0_0_15px_var(--color-accent)]" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full shadow-[0_0_15px_white]" />
           </motion.div>
           
-          {/* Decorative Rings */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-accent/5 rounded-full -z-10 scale-90 group-hover:scale-100 transition-transform duration-1000" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-accent/5 rounded-full -z-10 scale-75 group-hover:scale-90 transition-transform duration-1000 delay-100" />
+          {/* Large Abstract Background Shapes */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] border border-white/[0.02] rounded-full -z-10 scale-90 group-hover:scale-100 transition-transform duration-1000" />
         </div>
       </motion.div>
     </section>
